@@ -63,9 +63,9 @@ _[./src/index.html](./src/index.html)_
 
 ```
 
-- Create a simple react component (let's create it within a new file called `hello.tsx` in `src`folder).
+- Create a simple react component (let's create it within a new file called `App.tsx` in `src`folder).
 
-_[./src/hello.tsx](./src/hello.tsx)_
+_[./src/App.tsx](./src/hello.tsx)_
 
 ```javascript
 import * as React from "react";
