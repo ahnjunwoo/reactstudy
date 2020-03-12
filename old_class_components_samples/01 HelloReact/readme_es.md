@@ -58,9 +58,9 @@ _[./src/index.html](./src/index.html)_
   </html>
 ```
 
-- Cree un componente de react simple (se creará dentro de un nuevo archivo llamado [./src/App.tsx](./src/hello.tsx) bajo la carpeta `src`].
+- Cree un componente de react simple (se creará dentro de un nuevo archivo llamado [./src/app.tsx](./src/hello.tsx) bajo la carpeta `src`].
 
-_[./src/App.tsx](./src/hello.tsx)_
+_[./src/app.tsx](./src/hello.tsx)_
 ```jsx
 import * as React from 'react';
 

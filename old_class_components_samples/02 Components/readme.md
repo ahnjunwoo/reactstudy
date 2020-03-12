@@ -6,7 +6,7 @@ We will take a startup point sample _01 HelloReact_.
 
 Summary steps:
 
-- Remove `App.tsx` component.
+- Remove `app.tsx` component.
 - Update `index.html`.
 - Create `components`.
 - Update `index.tsx`.
@@ -29,7 +29,7 @@ in a terminal/console window. Older versions may produce errors.
  $ npm install
  ```
 
-- Remove `./src/App.tsx` file:
+- Remove `./src/app.tsx` file:
 
 - Update `index.html`:
 
