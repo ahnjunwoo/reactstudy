@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {ChangeEvent, Component} from "react";
 
 interface Props {
 }
@@ -13,7 +13,7 @@ class EventPractice extends Component<Props,State> {
         username: '',
         message: ''
     };
-    handleChange = e => {
+    handleChange = (e:ChangeEvent<HTMLInputElement>) => {
         this.setState({
             message: e.target.value, username: e.target.name,
         });
@@ -26,7 +26,7 @@ class EventPractice extends Component<Props,State> {
         });
     };
     handleKeyPress = e => {
-        if (e.key === 'Enter') {
+        if(e.key === 'Enter') {
             this.handleClick();
         }
     };

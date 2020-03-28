@@ -6,11 +6,11 @@ const EventPracticeFnc = () => {
         message: ''
     });
     const { username, message } = form;
-    const onChange = e => {
+    const onChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         setTimeout(() => console.log(e), 500);
         const nextForm = {
-            ...form, // 기존의 form 내용을 이 자리에 복사 한 뒤
-            [e.target.name]: e.target.value // 원하는 값을 덮어씌우기
+            ...form,
+            [e.target.name]: e.target.value
         };
         setForm(nextForm);
     };
@@ -21,7 +21,7 @@ const EventPracticeFnc = () => {
             message: ''
         });
     };
-    const onKeyPress = e => {
+    const onKeyPress = (e:React.KeyboardEvent) => {
         if (e.key === 'Enter') {
             onClick();
         }

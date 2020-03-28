@@ -1,37 +1,72 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, { Component } from 'react';
 
-const IterationSample = () => {
-    const [names, setNames] = useState([
-        {id: 1, text: '눈사람'},
-        {id: 2, text: '얼음'},
-        {id: 3, text: '눈'},
-        {id: 4, text: '바람'}
-    ]);
-    const [inputText, setInputText] = useState('');
-    const [nextId, setNextId] = useState(5);
-    const onChange = (e:ChangeEvent<HTMLInputElement>) => setInputText(e.target.value);
-    const onClick = () => {
-        const nextNames = names.concat({
-            id: nextId,
-            text: inputText
+interface Props {
+    color: string;
+}
+
+interface State {
+    number?: number;
+    color: string;
+}
+
+
+class LifeCycleSample extends Component<Props,State> {
+    myRef = null;
+
+    state = {
+        number: 0,
+        color: null
+    };
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        console.log('getDerivedStateFromProps');
+        if (nextProps.color !== prevState.color) {
+            return { color: nextProps.color };
+        }
+        return null;
+    }
+    componentDidMount() {
+        console.log('componentDidMount');
+    }
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('shouldComponentUpdate', nextProps, nextState);
+        return nextState.number % 10 !== 4;
+    }
+    componentWillUnmount() {
+        console.log('componentWillUnmount');
+    }
+    handleClick = () => {
+        this.setState({
+            number: this.state.number + 1
         });
-        setNextId(nextId + 1);
-        setNames(nextNames);
-        setInputText('');
     };
-
-    const onRemove = id => {
-        const nextNames = names.filter(name => name.id != id);
-        setNames(nextNames);
-    };
-    const namesList = names.map(name => <li key={name.id} onDoubleClick={() => onRemove(name.id)}>{name.text} </li>);
-    return (
-        <>
-            <input value={inputText} onChange={onChange}/>
-            <button onClick={onClick}>추가</button>
-            <ul>{namesList}</ul>
-        </>
-    );
-};
-
-export default IterationSample;
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        console.log('getSnapshotBeforeUpdate');
+        if (prevProps.color !== this.props.color) {
+            return this.myRef.style.color;
+        }
+        return null;
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('componentDidUpdate', prevProps, prevState);
+        if (snapshot) {
+            console.log('업데이트되기 직전 색상: ', snapshot);
+        }
+    }
+    render() {
+        console.log('render');
+        const style = {
+            color: this.props.color
+        };
+        return (
+            <div>
+                <h1 style={style} ref={ref => (this.myRef = ref)}>
+                    {this.state.number}
+                </h1>
+                <p>color: {this.state.color}</p>
+                <button onClick={this.handleClick}>더하기</button>
+            </div>
+        );
+    }
+}
+export default LifeCycleSample;
