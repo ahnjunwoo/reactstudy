@@ -4,8 +4,8 @@ import Info from "./info";
 import Counter from "./Counter";
 
 const App = () => {
-    return <Average />;
-    //return <Counter />;
+    //return <Average />;
+    return <Counter />;
     //return <Info />;
 };
 
